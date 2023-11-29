@@ -1,0 +1,35 @@
+
+#include<Servo.h>
+int buzzPin=8;
+int servoPin=9;
+int servoPos;
+Servo myservo;
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(A0,INPUT);
+  myservo.attach(servoPin);
+  pinMode(buzzPin,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+ int a=analogRead(A0);
+ Serial.println(a);
+ 
+ if(a>120)
+ {
+  myservo.write(60);
+  digitalWrite(9,HIGH);
+  delay(2000);
+  digitalWrite(buzzPin,HIGH);
+ } 
+  if(a<120)
+ {
+  myservo.write(0);
+  digitalWrite(9,HIGH);
+  delay(2000);
+  digitalWrite(buzzPin,LOW);
+ } 
+ delay(500);
+}
